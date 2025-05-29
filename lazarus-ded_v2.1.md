@@ -1003,22 +1003,44 @@ Cada release está planificado para ofrecer un MVP (Producto Mínimo Viable) con
 
 ### 4.3 Roadmap visual
 
+```mermaid
+gantt
+    title Roadmap de Desarrollo Lazarus v2.1
+    dateFormat YYYY-MM
+    section Fundación
+    Core + Installer         :2025-05, 2M
+    section Académico
+    Academic + Bulletins     :2025-07, 2M
+    Admissions              :2025-09, 1M
+    section Operaciones
+    Scheduling              :2025-10, 2M
+    Meal Service (PAE)      :2025-12, 2M
+    section Administrativo
+    HR Management           :2026-02, 3M
+    Accounting              :2026-05, 3M
+    section Comercial
+    License Manager 2.0     :2026-08, 2M
+    Payments                :2026-10, 1M
+    section Analítica
+    Analytics               :2026-11, 3M
+    section Documentos
+    Certifications          :2027-02, 2M
+    section Recursos
+    Resource Management     :2027-04, 2M
+    section Estudiantes
+    Observer                :2027-06, 2M
+    section Integración
+    Migrator + LMS          :2027-08, 2M
+    section Finalización
+    Refinamiento + Buffer   :2027-10, 19M
 ```
-2025                    2026                    2027                    2028         2029
-|------|------|------|------|------|------|------|------|------|------|------|------|
-May    Jul    Sep    Nov    Ene    Mar    May    Jul    Sep    Nov    Ene    Mar    May
-|      |      |      |      |      |      |      |      |      |      |      |      |
-[0.1]--[0.2]-[0.2.1][0.3]--[0.4]--[0.5]----[0.6]----[0.7.1][0.7.2][0.8]--[0.9]-[0.10][0.11][0.12]--[1.0]--------
- |      |      |      |      |      |         |        |      |     |      |     |     |     |       |
-Core   Acad. Admis. Sched. Meals  HR        Account. Lic2.0 Pay  Anal.  Cert. Res. Obs.  Migr.  Final+Buffer
-       Basic         (NEW)  (PAE)   Mgmt      ing                        Mgmt       LMS
 
-Equipo de desarrollo (3 personas × 2 horas/día = 30 horas/semana):
-- Desarrollo paralelo de componentes
+**Distribución del equipo:**
+- Desarrollo paralelo de componentes por 3 desarrolladores
+- 6 horas diarias totales (2 horas/desarrollador)
 - Integración continua con CI/CD
 - Releases frecuentes con auto-activación
-- Buffer del 25% para contingencias (9 meses adicionales)
-```
+- Buffer del 25% para contingencias
 
 ## 5. Roles y Permisos
 
@@ -1946,92 +1968,99 @@ paths:
 
 #### Arquitectura orientada a servicios con núcleo mínimo
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    CAPA DE PRESENTACIÓN                      │
-├─────────────────────────────────────────────────────────────┤
-│  PWA Responsive  │  Admin Panel  │  Public Portal           │
-└────────────────────┬───────────────────────────────────────┘
-                     │
-┌────────────────────┴───────────────────────────────────────┐
-│                      API GATEWAY                            │
-├─────────────────────────────────────────────────────────────┤
-│  Auth  │  Rate Limiting  │  Routing  │  Cache  │  Swagger  │
-└────────────────────┬───────────────────────────────────────┘
-                     │
-┌────────────────────┴───────────────────────────────────────┐
-│                    NÚCLEO MÍNIMO                            │
-├─────────────────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌──────────────┐  ┌─────────────────┐   │
-│  │ REST APIs   │  │  SOAP APIs   │  │ Service         │   │
-│  └─────────────┘  └──────────────┘  │ Orchestrator    │   │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │  Multi-Tenancy  │  Plugin Manager  │  Auto-Updater  │   │
-│  └─────────────────────────────────────────────────────┘   │
-│  ┌─────────────┐  ┌──────────────┐  ┌─────────────────┐   │
-│  │    Auth     │  │     RBAC     │  │ License Manager │   │
-│  └─────────────┘  └──────────────┘  └─────────────────┘   │
-└────────────────────┬───────────────────────────────────────┘
-                     │
-┌────────────────────┴───────────────────────────────────────┐
-│                    CAPA DE PLUGINS                          │
-├─────────────────────────────────────────────────────────────┤
-│ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐      │
-│ │Academic  │ │Admissions│ │    HR    │ │   PAE    │ ...  │
-│ │ ┌──────┐ │ │ ┌──────┐ │ │ ┌──────┐ │ │ ┌──────┐ │      │
-│ │ │ REST │ │ │ │ REST │ │ │ │ REST │ │ │ │ REST │ │      │
-│ │ │ SOAP │ │ │ │ SOAP │ │ │ │ SOAP │ │ │ │ SOAP │ │      │
-│ │ └──────┘ │ │ └──────┘ │ │ └──────┘ │ │ └──────┘ │      │
-│ └──────────┘ └──────────┘ └──────────┘ └──────────┘      │
-└────────────────────┬───────────────────────────────────────┘
-                     │
-┌────────────────────┴───────────────────────────────────────┐
-│                 CAPA DE DATOS                               │
-├─────────────────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌──────────────┐  ┌─────────────────┐   │
-│  │  MariaDB    │  │    Redis     │  │  File Storage   │   │
-│  │  (Tenant)   │  │   (Cache)    │  │  (S3/Local)     │   │
-│  └─────────────┘  └──────────────┘  └─────────────────┘   │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │           Hyperledger Fabric (Blockchain)            │   │
-│  └─────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph "CAPA DE PRESENTACIÓN"
+        A1[PWA Responsive]
+        A2[Admin Panel]
+        A3[Public Portal]
+    end
+    
+    subgraph "API GATEWAY"
+        B1[Auth]
+        B2[Rate Limiting]
+        B3[Routing]
+        B4[Cache]
+        B5[Swagger]
+    end
+    
+    subgraph "NÚCLEO MÍNIMO"
+        C1[REST APIs]
+        C2[SOAP APIs]
+        C3[Service Orchestrator]
+        C4[Multi-Tenancy]
+        C5[Plugin Manager]
+        C6[Auto-Updater]
+        C7[Auth System]
+        C8[RBAC]
+        C9[License Manager]
+    end
+    
+    subgraph "CAPA DE PLUGINS"
+        D1[Academic]
+        D2[Admissions]
+        D3[HR]
+        D4[PAE]
+        D5[Accounting]
+        D6[Analytics]
+        D7[Más plugins...]
+    end
+    
+    subgraph "CAPA DE DATOS"
+        E1[MariaDB Tenant DBs]
+        E2[Redis Cache/Queue]
+        E3[File Storage S3/Local]
+        E4[Hyperledger Fabric Blockchain]
+    end
+    
+    A1 & A2 & A3 --> B1 & B2 & B3 & B4 & B5
+    B1 & B2 & B3 & B4 & B5 --> C1 & C2 & C3
+    C1 & C2 & C3 --> C4 & C5 & C6 & C7 & C8 & C9
+    C4 & C5 & C6 & C7 & C8 & C9 --> D1 & D2 & D3 & D4 & D5 & D6 & D7
+    D1 & D2 & D3 & D4 & D5 & D6 & D7 --> E1 & E2 & E3 & E4
 ```
 
 #### Service Orchestrator
 
-El Service Orchestrator coordina la comunicación entre plugins:
-
-```
-┌─────────────────────────────────────────────────┐
-│            SERVICE ORCHESTRATOR                  │
-├─────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌─────────────┐              │
-│  │Event Bus    │  │Service      │              │
-│  │            │  │Registry     │              │
-│  └─────────────┘  └─────────────┘              │
-│  ┌─────────────┐  ┌─────────────┐              │
-│  │Plugin       │  │Dependency   │              │
-│  │Lifecycle    │  │Resolution   │              │
-│  └─────────────┘  └─────────────┘              │
-└─────────────────────────────────────────────────┘
+```mermaid
+graph LR
+    subgraph "SERVICE ORCHESTRATOR"
+        SO1[Event Bus]
+        SO2[Service Registry]
+        SO3[Plugin Lifecycle]
+        SO4[Dependency Resolution]
+        
+        SO1 <--> SO2
+        SO2 <--> SO3
+        SO3 <--> SO4
+        SO4 <--> SO1
+    end
+    
+    P1[Plugin 1] <--> SO1
+    P2[Plugin 2] <--> SO1
+    P3[Plugin 3] <--> SO1
 ```
 
 #### Auto-Updater para On-Premise
 
-```
-┌─────────────────────────────────────────────────┐
-│              AUTO-UPDATER                        │
-├─────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌─────────────┐              │
-│  │Update       │  │Signature    │              │
-│  │Checker      │  │Validator    │              │
-│  └─────────────┘  └─────────────┘              │
-│  ┌─────────────┐  ┌─────────────┐              │
-│  │Bundle       │  │Rollback     │              │
-│  │Installer    │  │Manager      │              │
-│  └─────────────┘  └─────────────┘              │
-└─────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph "AUTO-UPDATER"
+        AU1[Update Checker]
+        AU2[Signature Validator]
+        AU3[Bundle Installer]
+        AU4[Rollback Manager]
+        
+        AU1 --> AU2
+        AU2 --> AU3
+        AU3 --> AU4
+    end
+    
+    LR[License Repository] --> AU1
+    AU1 -->|Check Updates| LR
+    AU2 -->|Verify Signature| CS[Certificate Store]
+    AU3 -->|Install| FS[File System]
+    AU4 -->|Rollback| FS
 ```
 
 #### Estrategias específicas de escalamiento
@@ -2254,34 +2283,44 @@ POST /api/rest/v1/reports/generate/monthly-pae
 
 #### Modelo de seguridad reforzado
 
-```
-┌─────────────────────────────────────────┐
-│          SEGURIDAD PERIMETRAL           │
-├─────────────────────────────────────────┤
-│  WAF  │  DDoS Protection  │  IPS/IDS   │
-└────────────────┬───────────────────────┘
-                 │
-┌────────────────┴───────────────────────┐
-│         SEGURIDAD DE APLICACIÓN        │
-├─────────────────────────────────────────┤
-│  OWASP  │  Input Validation  │  XSS    │
-│  SAST   │  DAST              │  Fuzzing│
-└────────────────┬───────────────────────┘
-                 │
-┌────────────────┴───────────────────────┐
-│          SEGURIDAD DE DATOS            │
-├─────────────────────────────────────────┤
-│ Encryption at Rest │ Encryption in Transit │
-│ Data Masking      │ Tokenization         │
-│ Key Management    │ HSM Integration      │
-└────────────────┬───────────────────────┘
-                 │
-┌────────────────┴───────────────────────┐
-│         AUDITORÍA Y COMPLIANCE         │
-├─────────────────────────────────────────┤
-│ Immutable Logs │ SIEM │ Compliance Checks │
-│ Blockchain     │ Forensics │ Reporting    │
-└─────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph "SEGURIDAD PERIMETRAL"
+        SP1[WAF]
+        SP2[DDoS Protection]
+        SP3[IPS/IDS]
+    end
+    
+    subgraph "SEGURIDAD DE APLICACIÓN"
+        SA1[OWASP Top 10]
+        SA2[Input Validation]
+        SA3[XSS Protection]
+        SA4[SAST]
+        SA5[DAST]
+        SA6[Fuzzing]
+    end
+    
+    subgraph "SEGURIDAD DE DATOS"
+        SD1[Encryption at Rest]
+        SD2[Encryption in Transit]
+        SD3[Data Masking]
+        SD4[Tokenization]
+        SD5[Key Management]
+        SD6[HSM Integration]
+    end
+    
+    subgraph "AUDITORÍA Y COMPLIANCE"
+        AC1[Immutable Logs]
+        AC2[SIEM]
+        AC3[Compliance Checks]
+        AC4[Blockchain]
+        AC5[Forensics]
+        AC6[Reporting]
+    end
+    
+    SP1 & SP2 & SP3 --> SA1 & SA2 & SA3 & SA4 & SA5 & SA6
+    SA1 & SA2 & SA3 & SA4 & SA5 & SA6 --> SD1 & SD2 & SD3 & SD4 & SD5 & SD6
+    SD1 & SD2 & SD3 & SD4 & SD5 & SD6 --> AC1 & AC2 & AC3 & AC4 & AC5 & AC6
 ```
 
 #### Blockchain para auditoría
@@ -2335,29 +2374,49 @@ POST /api/rest/v1/reports/generate/monthly-pae
 
 #### Estrategia de escalamiento
 
-```
-┌─────────────────────────────────────────────┐
-│            LOAD BALANCER                     │
-│         (Nginx/HAProxy/ALB)                  │
-└──────────┬──────────────┬──────────────────┘
-           │              │
-┌──────────┴───┐   ┌─────┴──────────┐
-│   WEB APP    │   │    WEB APP     │  ... N
-│   SERVER 1   │   │    SERVER 2    │
-└──────────┬───┘   └─────┬──────────┘
-           │              │
-┌──────────┴──────────────┴──────────────────┐
-│              REDIS CLUSTER                  │
-│         (Cache + Queue + Sessions)          │
-└──────────┬─────────────────────────────────┘
-           │
-┌──────────┴──────────────────────────────────┐
-│          MARIADB GALERA CLUSTER             │
-├──────────────────────────────────────────────┤
-│  ┌─────────┐  ┌─────────┐  ┌─────────┐     │
-│  │ Node 1  │  │ Node 2  │  │ Node 3  │     │
-│  └─────────┘  └─────────┘  └─────────┘     │
-└──────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph "LOAD BALANCER"
+        LB[Nginx/HAProxy/ALB]
+    end
+    
+    subgraph "WEB TIER"
+        WS1[Web App Server 1]
+        WS2[Web App Server 2]
+        WSN[Web App Server N]
+    end
+    
+    subgraph "CACHE LAYER"
+        RC[Redis Cluster]
+        subgraph "Redis Functions"
+            RC1[Cache]
+            RC2[Queue]
+            RC3[Sessions]
+        end
+    end
+    
+    subgraph "DATABASE TIER"
+        subgraph "MariaDB Galera Cluster"
+            DB1[Node 1]
+            DB2[Node 2]
+            DB3[Node 3]
+        end
+    end
+    
+    subgraph "STORAGE"
+        FS[File Storage]
+        BC[Blockchain]
+    end
+    
+    LB --> WS1 & WS2 & WSN
+    WS1 & WS2 & WSN --> RC
+    RC --> RC1 & RC2 & RC3
+    WS1 & WS2 & WSN --> DB1 & DB2 & DB3
+    WS1 & WS2 & WSN --> FS & BC
+    
+    DB1 <--> DB2
+    DB2 <--> DB3
+    DB3 <--> DB1
 ```
 
 ### 9.6 Diagramas UML
@@ -2631,24 +2690,33 @@ jobs:
 #### Stack de Observabilidad
 
 **Logs (ELK Stack):**
-```
-Aplicación → Filebeat → Logstash → Elasticsearch → Kibana
-                                         ↓
-                                   Alerting Rules
+
+```mermaid
+graph LR
+    A[Aplicación] --> B[Filebeat]
+    B --> C[Logstash]
+    C --> D[Elasticsearch]
+    D --> E[Kibana]
+    D --> F[Alerting Rules]
 ```
 
 **Métricas (Prometheus + Grafana):**
-```
-Aplicación → Prometheus Exporter → Prometheus → Grafana
-                                        ↓
-                                  Alert Manager
+
+```mermaid
+graph LR
+    A[Aplicación] --> B[Prometheus Exporter]
+    B --> C[Prometheus]
+    C --> D[Grafana]
+    C --> E[Alert Manager]
 ```
 
 **Trazas (OpenTelemetry):**
-```
-Aplicación → OpenTelemetry Collector → Jaeger/Zipkin
-                                            ↓
-                                     Trace Analysis
+
+```mermaid
+graph LR
+    A[Aplicación] --> B[OpenTelemetry Collector]
+    B --> C[Jaeger/Zipkin]
+    C --> D[Trace Analysis]
 ```
 
 #### Dashboards Principales
