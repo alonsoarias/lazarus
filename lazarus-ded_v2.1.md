@@ -462,24 +462,26 @@ El sistema Lazarus implementa un modelo de licenciamiento dual avanzado con auto
 **Modelo SaaS (Software como Servicio):**
 - Ideal para instituciones con recursos limitados de TI
 - Autenticación mediante clave JWT
-- **Auto-activación de plugins < 2 minutos tras compra**
+- **Auto-activación instantánea de plugins incluidos en suscripción**
+- **Auto-activación de plugins adicionales < 2 minutos tras compra**
 - **Metered billing por estudiante/empleado activo**
 - Facturación recurrente (mensual/anual)
 - Almacenamiento en la nube gestionada por el proveedor
-- Actualizaciones automáticas
+- Actualizaciones automáticas de core y plugins
 - Soporte técnico incluido según nivel de suscripción
-- Tarifas diferenciadas para instituciones públicas
+- **Catálogo privado de plugins según suscripción**
 
 **Modelo On-Premise (Local):**
 - Preferido por instituciones con infraestructura propia
 - Licencia validada mediante archivo `.lzl`
-- **Auto-activación de plugins < 30 minutos tras compra**
-- **Update-Bundle firmado digitalmente**
+- **Auto-descarga e instalación de plugins < 30 minutos tras compra**
+- **Update-Bundle firmado digitalmente para plugins**
 - Pago único con mantenimiento anual opcional
 - Instalación en servidores propios de la institución
 - **Auto-updater con rollback automático**
 - Soporte técnico según contrato de mantenimiento
 - Control total sobre datos y configuraciones
+- **Acceso a repositorio privado de plugins según licencia**
 
 **License-Manager 2.0:**
 - **Gestión de planes base y addons modulares**
@@ -502,51 +504,95 @@ El sistema Lazarus implementa un modelo de licenciamiento dual avanzado con auto
 
 #### 3.2.1 Tipos de suscripción y costos (COP)
 
-| Plan | Tipo | Precio Base (COP/año) | Estudiantes Incluidos | Empleados Incluidos | Módulos Incluidos |
-|------|------|----------------------|----------------------|--------------------|--------------------|
-| **Lazarus Público** | SaaS | $0 | 500 | 50 | Core, Academic, HR, Meals, Observador |
-| **Lazarus Básico** | SaaS | $2,400,000 | 300 | 30 | Core, Academic, Payments |
-| **Lazarus Estándar** | SaaS | $4,800,000 | 800 | 80 | Básico + HR, Scheduling, Analytics |
-| **Lazarus Premium** | SaaS | $9,600,000 | 2000 | 200 | Estándar + Accounting, Admissions, Resource-Mgmt |
-| **Lazarus Enterprise** | On-Premise | $24,000,000 | Ilimitados | Ilimitados | Todos los módulos |
+**Planes de Suscripción Base:**
 
-**Addons disponibles:**
+| Plan | Tipo | Precio Base (COP/año) | Período Prueba | Estudiantes Incluidos | Empleados Incluidos | Plugins Incluidos |
+|------|------|----------------------|----------------|----------------------|--------------------|--------------------|
+| **Lazarus Esencial** | SaaS/On-Premise | $1,800,000 | 30 días gratis | 200 | 20 | Core, Academic-Basic, RBAC-Extended |
+| **Lazarus Estándar** | SaaS/On-Premise | $3,600,000 | 15 días gratis | 500 | 50 | Esencial + Boletines, Scheduling, Analytics-Basic |
+| **Lazarus Profesional** | SaaS/On-Premise | $7,200,000 | 7 días gratis | 1000 | 100 | Estándar + HR-Management, Accounting, Observador |
+| **Lazarus Premium** | SaaS/On-Premise | $12,000,000 | Sin período prueba | 2000 | 200 | Profesional + Admissions, Meal-Service, Certificaciones |
+| **Lazarus Enterprise** | On-Premise | $24,000,000 | Sin período prueba | Ilimitados | Ilimitados | Todos los plugins disponibles |
 
-| Addon | Precio (COP/año) | Descripción |
-|-------|------------------|-------------|
-| Transporte Escolar | $600,000 | Gestión de rutas y vehículos |
-| Biblioteca Digital | $360,000 | Sistema bibliotecario avanzado |
-| Meal Service (PAE) | $480,000 | Solo para privadas/mixtas |
-| LMS Bridge Pro | $720,000 | Integración avanzada con LMS |
-| Analytics Pro | $960,000 | Dashboards e IA predictiva |
+**Plugins Adicionales (Add-ons):**
 
-**Metered billing adicional:**
-- Estudiante adicional: $2,400 COP/año
-- Empleado adicional: $12,000 COP/año
-- Sede adicional: $240,000 COP/año
+| Plugin | Precio (COP/año) | Descripción | Prerequisitos |
+|--------|------------------|-------------|---------------|
+| **Admissions** | $1,200,000 | Sistema completo de admisiones | Academic-Basic, RBAC-Extended |
+| **HR-Management** | $1,800,000 | Gestión de recursos humanos y nómina | Core, RBAC-Extended |
+| **Accounting** | $2,400,000 | Sistema contable completo | Core, HR-Management |
+| **Meal-Service (PAE)** | $900,000 | Programa de Alimentación Escolar | Academic-Basic |
+| **Resource-Management** | $600,000 | Gestión de inventarios y recursos | Core |
+| **LMS-Bridge** | $480,000 | Integración con plataformas LMS | Academic-Basic |
+| **Migrator** | $360,000 | Herramientas de migración | Core |
+| **Analytics-Advanced** | $720,000 | Analítica avanzada con IA | Analytics-Basic |
+| **Certificaciones** | $480,000 | Generación de documentos oficiales | Academic-Basic |
+| **Observador** | $360,000 | Seguimiento estudiantil | Academic-Basic |
 
-**Descuentos:**
-- Instituciones públicas oficiales: 100% (gratuito)
-- Zona rural: 30% adicional
-- Multi-sede (>3): 20% sobre el total
-- Pago anual anticipado: 15%
+**Metered billing adicional (todos los planes):**
+- Estudiante adicional: $3,600 COP/año
+- Empleado adicional: $18,000 COP/año
+- Sede adicional: $360,000 COP/año
+- Transferencia de datos > 100GB/mes: $120 COP/GB
 
-**Flujo de validación:**
+**Políticas de pricing:**
+- **Período de prueba**: Solo plan Esencial con funcionalidad completa durante 30 días
+- **Upgrades**: Diferencia prorrateada al cambiar de plan
+- **Downgrades**: Aplicables al final del período de facturación
+- **Plugins adicionales**: Se activan inmediatamente tras pago
+- **Descuentos por volumen**: 10% por >5 sedes, 20% por >10 sedes
+- **Descuentos por pago anual**: 15% sobre tarifa mensual
+- **Instituciones rurales**: 25% de descuento en todos los planes
 
-```mermaid
-flowchart TD
-    A[Compra en WooCommerce] --> B[Webhook a License-Manager]
-    B --> C{Validar Plan/Addon}
-    C -->|Válido| D[Generar Licencia]
-    C -->|Inválido| E[Rechazar]
-    D --> F[Enviar a tenant]
-    F --> G{Tipo}
-    G -->|SaaS| H[Auto-activación < 2 min]
-    G -->|On-Premise| I[Auto-activación < 30 min]
-    H --> J[Plugin activo]
-    I --> J
-    E --> K[Notificar error]
+**Flujo de activación de plugins:**
+
+        }
+    }
+}
 ```
+
+---
+
+**Fin del Documento de Especificación y Diseño v2.1**
+
+Este documento proporciona la especificación completa y actualizada del sistema Lazarus, incorporando el modelo de negocio comercial con:
+
+✅ **Core ultra-mínimo** sin funcionalidad de negocio  
+✅ **Roles dinámicos**: Los plugins AMPLÍAN roles existentes y/o AÑADEN roles nuevos  
+✅ **Catálogo interno integrado** con redirección a WooCommerce  
+✅ **Planes de suscripción comerciales** con período de prueba  
+✅ **Repositorio privado** de plugins con acceso controlado  
+✅ **Auto-activación diferenciada** SaaS vs On-Premise  
+✅ **Webhook completo** para procesamiento de compras  
+✅ **Integración segura** entre catálogo y tienda  
+
+**Modelo de roles corregido:**
+- **Roles base** (Core): Super-Admin, Admin-Institución, Usuario Base
+- **Plugins AMPLÍAN** roles existentes con nuevas funcionalidades (ej: Admin-Institución se amplía con cada plugin)
+- **Plugins AÑADEN** roles especializados completamente nuevos (ej: Coordinador de Admisiones, Jefe de Personal)
+- **Personalización total** por cada institución según estructura organizacional
+
+El documento está listo para ser utilizado como guía oficial para el desarrollo del sistema Lazarus v2.1 con el modelo de negocio comercial definido.mermaid
+flowchart TD
+    A[Cliente solicita plugin] --> B{Tipo de licencia}
+    B -->|SaaS| C[Validar suscripción]
+    B -->|On-Premise| D[Validar licencia .lzl]
+    C --> E[Activar plugin en tenant]
+    D --> F[Descargar plugin desde repositorio privado]
+    F --> G[Instalar y configurar plugin]
+    E --> H[Plugin activo < 2 min]
+    G --> I[Plugin activo < 30 min]
+    H --> J[Roles asociados disponibles]
+    I --> J
+    J --> K[Notificar activación exitosa]
+```
+
+**Repositorio privado de plugins:**
+- Acceso restringido según nivel de suscripción
+- Plugins firmados digitalmente
+- Versionado automático
+- Rollback disponible
+- **No existe catálogo público de plugins**
 
 ### 3.3 Segmento de clientes objetivo
 
@@ -748,40 +794,48 @@ El desarrollo de Lazarus seguirá estas directrices actualizadas:
 
 ### 3.7 Arquitectura general
 
-El sistema Lazarus se construirá sobre una arquitectura modular orientada a servicios con las siguientes características:
+El sistema Lazarus se construirá sobre una **arquitectura de núcleo ultra-mínimo** donde toda funcionalidad de negocio se implementa como **plugins comerciales** con acceso restringido según la suscripción adquirida.
 
 ```mermaid
 graph TB
     subgraph "CAPA DE PRESENTACIÓN"
         PWA[PWA - Progressive Web App]
-        WEB[Web Responsive]
-        API_DOCS[Swagger/OpenAPI Docs]
+        WEB[Web Interface Base]
+        API_DOCS[Plugin Documentation]
     end
     
     subgraph "API GATEWAY"
         AUTH[Autenticación JWT/OAuth]
         RATE[Rate Limiting]
-        ROUTE[Routing]
-        CACHE[Cache Layer]
+        ROUTE[Plugin Routing]
+        CACHE[Response Cache]
     end
     
-    subgraph "NÚCLEO MÍNIMO"
-        REST_API[REST APIs]
-        SOAP_API[SOAP APIs]
-        PLUGIN_MGR[Plugin Manager]
-        TENANT_MGR[Multi-Tenancy Manager]
+    subgraph "NÚCLEO ULTRA-MÍNIMO"
         LICENSE_MGR[License Manager 2.0]
+        PLUGIN_LOADER[Dynamic Plugin Loader]
+        TENANT_MGR[Multi-Tenancy Manager]
+        REST_FRAMEWORK[REST Framework]
+        SOAP_FRAMEWORK[SOAP Framework]
         AUDIT_CHAIN[Blockchain Auditoría]
+        RBAC_BASE[RBAC Base]
     end
     
-    subgraph "CAPA DE PLUGINS"
-        CORE[Core]
-        ACADEMIC[Academic]
-        ADMISSIONS[Admissions]
-        HR[HR Management]
-        ACCOUNTING[Accounting]
-        PAE[Meal Service]
-        OTHERS[... Otros Plugins]
+    subgraph "REPOSITORIO PRIVADO DE PLUGINS"
+        REPO_AUTH[Autenticación por Suscripción]
+        PLUGIN_STORE[Plugin Store Privado]
+        VERSION_CTRL[Control de Versiones]
+        DIGITAL_SIGN[Firma Digital]
+    end
+    
+    subgraph "PLUGINS COMERCIALES"
+        ACADEMIC[Academic-Basic 💰]
+        ADMISSIONS[Admissions 💰]
+        HR[HR-Management 💰]
+        ACCOUNTING[Accounting 💰]
+        PAE[Meal-Service 💰]
+        ANALYTICS[Analytics 💰]
+        OTHERS[... Más Plugins 💰]
     end
     
     subgraph "OBSERVABILIDAD"
@@ -802,79 +856,63 @@ graph TB
     WEB --> API_GATEWAY
     API_DOCS --> API_GATEWAY
     
-    API_GATEWAY --> NÚCLEO_MÍNIMO
+    API_GATEWAY --> NÚCLEO_ULTRA-MÍNIMO
     
-    NÚCLEO_MÍNIMO --> CAPA_DE_PLUGINS
+    LICENSE_MGR --> REPOSITORIO_PRIVADO_DE_PLUGINS
+    PLUGIN_LOADER --> REPOSITORIO_PRIVADO_DE_PLUGINS
     
-    CAPA_DE_PLUGINS --> CAPA_DE_DATOS
+    NÚCLEO_ULTRA-MÍNIMO --> PLUGINS_COMERCIALES
     
-    OBSERVABILIDAD -.-> NÚCLEO_MÍNIMO
-    OBSERVABILIDAD -.-> CAPA_DE_PLUGINS
+    PLUGINS_COMERCIALES --> CAPA_DE_DATOS
+    
+    OBSERVABILIDAD -.-> NÚCLEO_ULTRA-MÍNIMO
+    OBSERVABILIDAD -.-> PLUGINS_COMERCIALES
 ```
 
-**Arquitectura por capas:**
-- **Capa de servicios**: APIs REST/SOAP expuestas por el núcleo
-- **Capa de presentación**: PWA y interfaces web responsives
-- **Capa de aplicación**: Controladores, servicios de negocio
-- **Capa de dominio**: Modelos, lógica de negocio, reglas
-- **Capa de infraestructura**: Base de datos, servicios externos
-- **Capa de observabilidad**: Monitoreo, logs, métricas, trazas
+**Principios arquitectónicos actualizados:**
 
-**Núcleo mínimo:**
-- Gestión de autenticación y autorización
-- Servicios base REST/SOAP
-- **License-Manager 2.0 con auto-activación**
-- Sistema de plugins dinámico
-- Multi-tenancy
-- **Blockchain interno de auditoría**
-- Gestión de configuración
+1. **Núcleo ultra-mínimo**: Solo infraestructura base, sin funcionalidad de negocio
+2. **Todo es un plugin comercial**: Cada funcionalidad es un producto vendible
+3. **Catálogo privado**: No existe marketplace público, acceso por suscripción
+4. **Activación automática**: Los plugins se activan según licencia adquirida
+5. **Roles dinámicos**: Los roles aparecen/desaparecen según plugins activos
+6. **Repositorio privado**: Descarga segura con autenticación por suscripción
 
-**Modelo de plugins:**
-- Cada funcionalidad como plugin independiente
-- **Plugins activables/desactivables por tenant vía UI y API**
-- Plugins extienden servicios REST/SOAP del núcleo
-- Activación/desactivación sin afectar el sistema
-- **Auto-activación tras compra en License-Manager**
-- Versionado independiente
-- APIs bien definidas entre plugins
+**Modelo de plugins comerciales:**
+- Cada plugin tiene su propio precio
+- Los plugins se agrupan en suscripciones
+- Plugins adicionales se venden como add-ons
+- **No hay plugins gratuitos** (excepto período de prueba)
+- Acceso controlado por License-Manager 2.0
 
-**Servicios REST/SOAP:**
+**Activación diferenciada:**
+
+**SaaS:**
 ```
-/api/rest/v1/[plugin]/[recurso]    # Servicios REST
-/api/soap/v1/[plugin]              # Servicios SOAP
-/api/rest/v1/licensing/*           # APIs License-Manager 2.0
+Compra → Validación → Activación instantánea → Plugin funcional
 ```
 
-Ejemplos:
-- REST: `/api/rest/v1/academic/courses`
-- SOAP: `/api/soap/v1/academic?wsdl`
-- Licensing: `/api/rest/v1/licensing/plugins/activate`
+**On-Premise:**
+```
+Compra → Validación → Descarga desde repositorio privado → Instalación automática → Plugin funcional
+```
 
-**Multi-tenancy:**
-- Aislamiento a nivel de base de datos (database-per-tenant)
-- Separación lógica de datos por cliente/institución/sede
-- Configuraciones específicas por tipo de institución
-- Dominios/subdominios configurables por tenant
-- **Plugin states independientes por tenant**
-
-**PWA y capacidades offline:**
-- Service Workers para cache inteligente
-- Sincronización en background
-- Funcionalidad offline para operaciones críticas
-- Push notifications
-- Instalación desde navegador
+**Gestión de suscripciones:**
+- **Plan Base**: Define plugins incluidos
+- **Add-ons**: Plugins adicionales que se suman al plan
+- **Upgrade/Downgrade**: Cambio de plan con activación/desactivación automática
+- **Trial**: Acceso temporal al plan básico
 
 **Consideraciones por tipo de institución:**
-- **Públicas**: Módulos de contratación estatal, reportes CHIP
-- **Privadas**: Módulos de gestión empresarial, marketing, admisiones
-- **Mixtas**: Combinación configurable de características
+- **Públicas**: Plugins específicos para normativa estatal (ej: CHIP, SIGEP)
+- **Privadas**: Plugins comerciales (ej: Admissions, CRM, Marketing)
+- **Mixtas**: Combinación flexible según necesidades
 
 **Escalabilidad:**
-- Diseño para crecimiento horizontal y vertical
-- Servicios stateless para fácil replicación
-- Cache distribuido con Redis
-- Preparación para arquitectura de microservicios futura
-- **Observabilidad completa para identificar cuellos de botella**
+- Microservicios por plugin
+- Escalamiento independiente por funcionalidad
+- Cache distribuido por plugin
+- Observabilidad granular por componente
 
 ## 4. Modelo de MVP por Plugins
 
@@ -1140,196 +1178,322 @@ gantt
 
 ### 5.1 Modelo de roles
 
-El sistema Lazarus implementa un modelo RBAC extensible y adaptable según el tipo de institución (pública, privada o mixta), con roles específicos para cada contexto:
+El sistema Lazarus implementa un **modelo RBAC dinámico** donde los roles disponibles dependen de los plugins activos en cada tenant. Los roles se activan automáticamente cuando se instala el plugin correspondiente y se pueden **personalizar completamente** según las necesidades específicas de cada institución.
 
-#### Jerarquía de roles predefinidos
+#### Roles base del Core (siempre disponibles)
 
-**Roles Administrativos del Sistema:**
+**Roles Técnicos del Sistema:**
 
 1. **Super-Administrador (SA)**
-   - Nivel: Sistema
-   - Control total sobre todas las funcionalidades
-   - Gestión de licencias y configuración global
+   - Nivel: Sistema global
+   - Control total sobre plataforma
+   - Gestión de licencias y tenants
 
-2. **Admin-Cliente (AC)**
-   - Nivel: Cliente (grupo de instituciones)
-   - Administra múltiples instituciones
-   - Reportes consolidados
-
-3. **Admin-Institución (AI)**
+2. **Admin-Institución (AI)**
    - Nivel: Institución
-   - Administra institución completa
-   - Configuraciones institucionales
+   - Administración básica
+   - Se extiende automáticamente con plugins activos
 
-4. **Admin-Sede (AS)**
-   - Nivel: Sede
-   - Administra sede específica
-   - Configuraciones locales
+3. **Usuario Base**
+   - Nivel: Usuario
+   - Sin permisos específicos
+   - Base para roles de plugins
 
-**Roles Directivos (varían según tipo de institución):**
+#### Roles dinámicos por plugin (detallados)
 
-5. **Rector**
-   - Máxima autoridad institucional
-   - Aprobación de procesos críticos
-   - Firma digital de documentos
+**Los plugins pueden AMPLIAR roles existentes y/o AÑADIR roles completamente nuevos:**
 
-6. **Coordinador Académico**
-   - Supervisión académica
-   - Aprobación de calificaciones
-   - Gestión de horarios
+**Plugin Academic-Basic** ($0 - Incluido en Esencial+):
 
-7. **Coordinador de Convivencia**
-   - Gestión disciplinaria
-   - Comités de convivencia
-   - Seguimiento de casos
+*Roles AMPLIADOS:*
+- **Admin-Institución**: Se amplía con funcionalidades académicas (gestión de períodos, configuración de evaluación, supervisión académica general)
 
-**Roles Académicos:**
+*Roles NUEVOS añadidos:*
+- **Coordinador Académico**: Supervisión académica especializada, aprobación de calificaciones, gestión de horarios
+- **Docente**: Registro de calificaciones, observaciones de estudiantes, gestión de cursos
+- **Director de Grupo**: Funciones de docente + seguimiento especial de grupo + reportes grupales
+- **Secretaria Académica**: Gestión documental académica, matrículas, certificados
+- **Estudiante**: Consulta de información académica personal, acceso a recursos educativos
+- **Acudiente**: Seguimiento académico de estudiantes asociados, comunicación con docentes
 
-8. **Docente**
-   - Registro de calificaciones
-   - Observaciones de estudiantes
-   - Gestión de sus cursos
+**Plugin Admissions** ($1,200,000/año - Solo privadas/mixtas):
 
-9. **Director de Grupo**
-   - Funciones de docente
-   - Seguimiento especial de su grupo
-   - Reportes de grupo
+*Roles AMPLIADOS:*
+- **Admin-Institución**: Se amplía con funcionalidades de gestión de admisiones (configuración general del proceso, reportes ejecutivos)
+- **Secretaria Académica**: Se amplía con funciones de apoyo al proceso de admisiones
 
-10. **Psicorientador**
-    - Acompañamiento estudiantil
-    - Reportes confidenciales
-    - Gestión de casos especiales
+*Roles NUEVOS añadidos:*
+- **Coordinador de Admisiones**: Gestión completa del proceso, configuración criterios, supervisión evaluaciones, aprobación final
+- **Asesor de Admisiones**: Atención aspirantes/familias, registro pre-inscripciones, seguimiento personalizado
+- **Evaluador de Admisiones**: Realización de pruebas académicas, entrevistas, registro de resultados
+- **Aspirante**: Acceso portal admisiones, seguimiento proceso, carga documentos
+- **Acudiente Aspirante**: Acompañamiento proceso hijo, recepción notificaciones
 
-**Roles Administrativos Institucionales:**
+**Plugin HR-Management** ($1,800,000/año):
 
-11. **Secretaria Académica**
-    - Gestión documental
-    - Matrículas y certificados
-    - Atención a usuarios
+*Roles AMPLIADOS:*
+- **Admin-Institución**: Se amplía con funcionalidades de gestión de recursos humanos (supervisión general de personal, reportes ejecutivos de RRHH)
 
-12. **Auxiliar Administrativo**
-    - Soporte a secretaría
-    - Tareas administrativas básicas
-    - Archivo documental
+*Roles NUEVOS añadidos:*
+- **Jefe de Personal**: Gestión contratos, evaluaciones desempeño, procesos selección, política salarial
+- **Auxiliar de Nómina**: Procesamiento nómina, novedades personal, reportes seguridad social
+- **Coordinador de Recursos Humanos**: Capacitación, bienestar laboral, clima organizacional
+- **Jefe Inmediato**: Evaluación de subordinados, gestión de equipos (rol contextual)
+- **Empleado**: Consulta información laboral, solicitud permisos, certificados
 
-13. **Pagador/Tesorero** (principalmente privadas)
-    - Gestión de pagos
-    - Control de cartera
-    - Reportes financieros
+**Plugin Accounting** ($2,400,000/año):
 
-14. **Contador**
-    - Gestión contable completa
-    - Reportes fiscales
-    - Auditoría financiera
+*Roles AMPLIADOS:*
+- **Admin-Institución**: Se amplía con funcionalidades contables básicas (consulta de estados financieros, reportes ejecutivos)
 
-15. **Almacenista**
-    - Control de inventarios
-    - Gestión de compras
-    - Distribución de recursos
+*Roles NUEVOS añadidos:*
+- **Contador**: Gestión contable completa, reportes fiscales, auditoría financiera
+- **Auxiliar Contable**: Registro asientos, conciliaciones, facturación
+- **Tesorero**: Gestión pagos/recaudos, flujo de caja, control cartera
+- **Auditor**: Revisión procesos contables, validación soportes
+- **Revisor Fiscal**: Dictamen estados financieros, cumplimiento normativo
 
-**Roles de Servicios:**
+**Plugin Meal-Service (PAE)** ($900,000/año):
 
-16. **Coordinador PAE**
-    - Gestión programa alimentación
-    - Control nutricional
-    - Reportes MEN
+*Roles AMPLIADOS:*
+- **Admin-Institución**: Se amplía con supervisión general del programa PAE
+- **Estudiante**: Se amplía con funcionalidades de beneficiario PAE (cuando aplique)
 
-17. **Manipulador de Alimentos**
-    - Registro de minutas servidas
-    - Control de asistencia PAE
-    - Inventario diario
+*Roles NUEVOS añadidos:*
+- **Coordinador PAE**: Gestión programa alimentación, control nutricional, reportes MEN
+- **Manipulador de Alimentos**: Registro minutas servidas, control asistencia PAE
+- **Nutricionista**: Diseño menús, cálculo nutricional, supervisión calidad
+- **Almacenista PAE**: Control inventarios alimentarios, trazabilidad PEPS
 
-18. **Bibliotecario**
-    - Gestión de recursos bibliográficos
-    - Préstamos y devoluciones
-    - Estadísticas de uso
+**Plugin Observador** ($360,000/año):
 
-19. **Enfermero/a**
-    - Atención en salud
-    - Registro médico
-    - Alertas de salud
+*Roles AMPLIADOS:*
+- **Docente**: Se amplía con funcionalidades de seguimiento disciplinario y observaciones estudiantiles
+- **Director de Grupo**: Se amplía con herramientas especializadas de convivencia
+- **Admin-Institución**: Se amplía con supervisión de convivencia escolar
 
-20. **Coordinador de Transporte**
-    - Gestión de rutas
-    - Control de vehículos
-    - Seguimiento de estudiantes
+*Roles NUEVOS añadidos:*
+- **Coordinador de Convivencia**: Gestión disciplinaria especializada, comités, rutas de atención
+- **Psicorientador**: Acompañamiento estudiantil, casos especiales, orientación vocacional
 
-**Roles de Recursos Humanos:**
+**Plugin Certificaciones** ($480,000/año):
 
-21. **Jefe de Personal** (principalmente privadas)
-    - Gestión de contratos
-    - Evaluaciones de desempeño
-    - Procesos de selección
+*Roles AMPLIADOS:*
+- **Secretaria Académica**: Se amplía con generación de certificados y documentos oficiales
+- **Admin-Institución**: Se amplía con firma digital y validación de documentos
 
-22. **Auxiliar de Nómina**
-    - Procesamiento de nómina
-    - Novedades de personal
-    - Reportes de seguridad social
+*Roles NUEVOS añadidos:*
+- **Registrador Académico**: Libro de registro digital, validación documentos, archivo histórico
 
-**Roles de Mantenimiento:**
+**Plugin Resource-Management** ($600,000/año):
 
-23. **Jefe de Mantenimiento**
-    - Programación de mantenimientos
-    - Gestión de personal técnico
-    - Control de infraestructura
+*Roles AMPLIADOS:*
+- **Admin-Institución**: Se amplía con gestión general de recursos y activos
 
-24. **Personal de Mantenimiento**
-    - Registro de actividades
-    - Solicitudes de materiales
-    - Reportes de estado
+*Roles NUEVOS añadidos:*
+- **Jefe de Mantenimiento**: Programación mantenimientos, gestión personal técnico
+- **Almacenista General**: Control inventarios generales, gestión compras
+- **Personal de Mantenimiento**: Registro actividades, solicitud materiales
+- **Responsable de Activos**: Gestión bienes, depreciaciones, seguros
 
-**Nuevos Roles de Admisiones:**
+#### Ejemplo de evolución de roles
 
-25. **Coordinador de Admisiones**
-    - **Gestión completa del proceso de admisión**
-    - **Configuración de criterios de evaluación**
-    - **Supervisión de entrevistas y pruebas**
-    - **Aprobación final de admisiones**
-    - **Reportes estadísticos del proceso**
+**Evolución del rol "Admin-Institución":**
 
-26. **Asesor de Admisiones**
-    - **Atención a aspirantes y familias**
-    - **Registro de pre-inscripciones**
-    - **Programación de citas y evaluaciones**
-    - **Seguimiento del proceso por aspirante**
-    - **Apoyo en eventos de promoción**
+```
+Core inicial:
+- Admin-Institución: Gestión básica de usuarios, configuración básica
 
-**Usuarios Finales:**
++ Academic-Basic:
+- Admin-Institución: + Configuración académica, + Supervisión de calificaciones, + Reportes académicos
 
-27. **Estudiante**
-    - Consulta de información personal
-    - Acceso a recursos
-    - Comunicación académica
++ HR-Management:
+- Admin-Institución: + Reportes de personal, + Configuración de nómina, + Supervisión de RRHH
 
-28. **Aspirante**
-    - **Acceso al portal de admisiones**
-    - **Seguimiento del proceso de admisión**
-    - **Carga de documentos requeridos**
-    - **Programación de citas**
++ Accounting:
+- Admin-Institución: + Estados financieros, + Reportes contables, + Supervisión fiscal
+```
 
-29. **Acudiente**
-    - Seguimiento de estudiantes asociados
-    - Autorización de permisos
-    - Comunicación con institución
+**Nuevo rol específico:**
 
-30. **Egresado**
-    - Solicitud de certificados
-    - Acceso a información histórica
-    - Actualización de datos
+```
++ Admissions:
+- Coordinador de Admisiones: Rol completamente nuevo con funcionalidades específicas de admisiones
+```
 
-31. **Invitado**
-    - Acceso público limitado
-    - Consulta de información general
-    - Pre-inscripciones
+#### Flujo de gestión del catálogo de plugins
 
-#### Características del sistema RBAC adaptado
+```mermaid
+sequenceDiagram
+    participant AI as Admin Institución
+    participant LAZ as Lazarus Dashboard
+    participant CAT as Catálogo Interno
+    participant WOO as WooCommerce Store
+    participant LM as License Manager
+    participant REPO as Repositorio Privado
+    
+    AI->>LAZ: Acceder a "Gestión de Plugins"
+    LAZ->>CAT: Mostrar plugins disponibles
+    CAT->>AI: Lista plugins con estado (activo/disponible/no disponible)
+    
+    Note over AI,CAT: Admin ve plugins de su suscripción + add-ons disponibles
+    
+    AI->>CAT: Clic en "Comprar Plugin X"
+    CAT->>WOO: Redireccionar a tienda (con tenant_id + plugin_code)
+    
+    Note over WOO: Cliente completa proceso de compra
+    
+    WOO->>LM: Webhook: Compra confirmada
+    LM->>LM: Validar licencia y prerrequisitos
+    LM->>REPO: Solicitar plugin firmado
+    REPO->>LM: Descargar plugin
+    
+    alt SaaS
+        LM->>LAZ: Activar plugin < 2 min
+    else On-Premise
+        LM->>LAZ: Descargar e instalar < 30 min
+    end
+    
+    LAZ->>LAZ: Activar roles asociados al plugin
+    LAZ->>AI: Notificar activación exitosa
+    AI->>LAZ: Configurar roles según necesidades
+```
 
-- **Roles por tipo de institución**: Configuraciones predeterminadas según naturaleza jurídica
-- **Roles contextuales**: Aplicación en contextos específicos
-- **Herencia múltiple**: Un usuario puede tener varios roles simultáneos
-- **Restricciones temporales**: Activación por períodos específicos
-- **Delegación supervisada**: Asignación temporal de permisos
-- **Auditoría completa**: Trazabilidad de todas las acciones en blockchain interno
+#### Características del catálogo interno
+
+**Vista del administrador en Lazarus:**
+
+1. **Plugins Activos** 🟢
+   - Estado: Funcionando
+   - Versión instalada
+   - Fecha de vencimiento
+   - Opciones: Configurar, Desactivar, Ver roles
+
+2. **Plugins Disponibles en Suscripción** 🟡
+   - Estado: Incluido pero no activado
+   - Botón: "Activar ahora" (sin costo)
+   - Descripción y roles que incluye
+
+3. **Add-ons Disponibles para Compra** 🔵
+   - Estado: Disponible para compra
+   - Precio anual
+   - Botón: "Comprar" → Redirige a WooCommerce
+   - Prerequisitos y compatibilidad
+
+4. **Plugins No Disponibles** ⚫
+   - Estado: Requiere upgrade de plan
+   - Información del plan necesario
+   - Botón: "Upgrade Plan" → Redirige a WooCommerce
+
+**Ejemplo de vista del catálogo:**
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    GESTIÓN DE PLUGINS                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│ 🟢 Academic-Basic           ✓ Activo    [Configurar] [❓]   │
+│    Roles: Docente, Coordinador Académico, Estudiante...     │
+│                                                             │
+│ 🟡 Boletines                 ⚡ Disponible  [Activar]      │
+│    Incluido en su plan Estándar                            │
+│                                                             │
+│ 🔵 Admissions               💰 $1,200,000   [Comprar]      │
+│    Sistema completo de admisiones para privadas            │
+│    Roles: Coord. Admisiones, Asesor, Evaluador...         │
+│                                                             │
+│ ⚫ Analytics-Advanced        🔒 Requiere plan Premium       │
+│    IA predictiva y dashboards avanzados                    │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+#### Gestión de roles personalizada por plugin
+
+Una vez activado el plugin, el administrador puede:
+
+1. **Ver roles predeterminados** del plugin
+2. **Personalizar nombres** de roles según la institución
+3. **Ajustar permisos** específicos
+4. **Crear roles personalizados** combinando funciones
+5. **Asignar usuarios** a los nuevos roles
+6. **Definir jerarquías** organizacionales
+
+**Ejemplo de personalización:**
+
+```
+Plugin HR-Management activado:
+
+Roles predeterminados:        →  Personalización institución:
+- Jefe de Personal           →  "Director de Talento Humano"  
+- Auxiliar de Nómina        →  "Asistente de Nómina"
+- Coordinador de RRHH       →  "Líder de Bienestar"
+- Empleado                  →  (Sin cambios)
+
+Permisos ajustados:
+- Jefe Personal: + aprobar_vacaciones, + gestionar_bonos
+- Auxiliar Nómina: - acceso_datos_sensibles + solo_consulta
+```
+
+#### Características del modelo dinámico
+
+1. **Activación automática**: Los roles se activan cuando se instala el plugin
+2. **Desactivación automática**: Los roles se desactivan (no eliminan) cuando se desinstala el plugin
+3. **Personalización total**: Cada institución puede:
+   - Modificar nombres de roles
+   - Ajustar permisos específicos
+   - Crear roles personalizados
+   - Combinar funciones según estructura organizacional
+
+4. **Plantillas por tipo de institución**:
+   - **Públicas**: Roles según normativa estatal
+   - **Privadas**: Roles empresariales flexibles
+   - **Mixtas**: Combinación configurable
+
+5. **Herencia inteligente**: Los roles heredan permisos base y se extienden con permisos del plugin
+
+#### Gestión de roles personalizada
+
+```mermaid
+flowchart TD
+    A[Plugin se activa] --> B[Roles del plugin disponibles]
+    B --> C{Institución tiene personalización?}
+    C -->|Sí| D[Aplicar personalización guardada]
+    C -->|No| E[Usar plantilla por defecto]
+    D --> F[Roles activos personalizados]
+    E --> G[Roles activos estándar]
+    F --> H[Admin puede modificar]
+    G --> H
+    H --> I[Cambios se guardan por institución]
+    I --> J[Se aplican inmediatamente]
+    
+    K[Plugin se desactiva] --> L[Roles se desactivan]
+    L --> M[Personalización se conserva]
+    M --> N[Al reactivar, se restaura personalización]
+```
+
+#### Ejemplo de roles dinámicos
+
+**Institución con solo Core + Academic-Basic activo:**
+- Super-Administrador
+- Admin-Institución  
+- Coordinador Académico
+- Docente
+- Director de Grupo
+- Estudiante
+- Acudiente
+
+**Misma institución después de activar Admissions:**
+- *(roles anteriores)* +
+- **Coordinador de Admisiones** ⚡ NUEVO
+- **Asesor de Admisiones** ⚡ NUEVO
+- **Aspirante** ⚡ NUEVO
+
+**Misma institución después de activar HR-Management:**
+- *(roles anteriores)* +
+- **Jefe de Personal** ⚡ NUEVO
+- **Auxiliar de Nómina** ⚡ NUEVO
+- **Empleado** ⚡ NUEVO
 
 ### 5.2 Permisos por rol
 
@@ -1495,29 +1659,47 @@ El sistema incluye herramientas avanzadas para gestión de roles adaptadas a cad
 
 ### 6.1 Core
 
-El plugin Core constituye el núcleo mínimo del sistema con arquitectura orientada a servicios REST/SOAP.
+El plugin Core constituye el **núcleo absolutamente mínimo** del sistema, conteniendo únicamente las funcionalidades esenciales para que otros plugins puedan operar. **Toda funcionalidad de negocio se implementa como plugins separados**.
 
-#### Requisitos Funcionales Actualizados
+#### Requisitos Funcionales del Core Mínimo
 
 | ID | Requisito | Descripción | Prioridad |
 |----|-----------|-------------|-----------|
 | CORE-1 | Multi-tenancy base | Arquitectura multi-tenant con aislamiento por base de datos | Alta |
-| CORE-2 | Servicios REST base | APIs REST para todas las operaciones CRUD básicas | Alta |
-| CORE-3 | Servicios SOAP base | Endpoints SOAP para integración con sistemas legacy | Alta |
-| CORE-4 | Gestión de usuarios | Sistema de usuarios con perfiles diferenciados por institución | Alta |
-| CORE-5 | Sistema base de roles | RBAC básico extensible por plugins | Alta |
-| CORE-6 | Autenticación JWT/OAuth | Sistema de autenticación para servicios | Alta |
-| CORE-7 | Dashboard modular PWA | Panel configurable según tipo de institución con PWA | Alta |
-| CORE-8 | Sistema de notificaciones | Notificaciones multi-canal (email, SMS, push) | Media |
-| CORE-9 | Gestión de instituciones | CRUD con campos específicos según naturaleza jurídica | Alta |
-| CORE-10 | Blockchain auditoría | Sistema inmutable de auditoría con blockchain interno | Alta |
-| CORE-11 | API Gateway | Punto único de entrada para todos los servicios | Alta |
-| CORE-12 | Plugin loader | Sistema dinámico de carga y gestión de plugins | Alta |
-| CORE-13 | Configuración jerárquica | Parámetros por sistema/institución/sede/usuario | Media |
-| CORE-14 | Cache distribuido | Sistema de cache para optimización de servicios | Media |
-| CORE-15 | Healthcheck endpoints | Monitoreo de salud de servicios | Media |
-| CORE-16 | Service Workers | PWA con capacidades offline | Alta |
-| CORE-17 | Plugin state manager | Estados de plugins por tenant | Alta |
+| CORE-2 | Servicios REST base | Framework REST para que plugins expongan APIs | Alta |
+| CORE-3 | Servicios SOAP base | Framework SOAP para que plugins expongan servicios legacy | Alta |
+| CORE-4 | Autenticación básica | Sistema de login/logout y gestión de sesiones JWT | Alta |
+| CORE-5 | Sistema base de roles | RBAC mínimo extensible por plugins | Alta |
+| CORE-6 | Gestión de usuarios base | CRUD básico de usuarios (sin roles de negocio) | Alta |
+| CORE-7 | Dashboard vacío | Panel base que plugins pueden extender | Alta |
+| CORE-8 | Sistema de notificaciones base | Infraestructura para que plugins envíen notificaciones | Media |
+| CORE-9 | Gestión de instituciones base | CRUD mínimo de instituciones (sin funcionalidad específica) | Alta |
+| CORE-10 | Blockchain auditoría | Sistema inmutable de auditoría base | Alta |
+| CORE-11 | API Gateway | Punto único de entrada para servicios de plugins | Alta |
+| CORE-12 | Plugin loader dinámico | Sistema de carga, activación y desactivación de plugins | Alta |
+| CORE-13 | License-Manager integrado | Validación de licencias y activación automática | Alta |
+| CORE-14 | Cache distribuido | Sistema de cache base para plugins | Media |
+| CORE-15 | Healthcheck endpoints | Monitoreo de salud de servicios base | Media |
+| CORE-16 | Service Workers base | PWA mínimo que plugins pueden extender | Alta |
+| CORE-17 | Configuración jerárquica | Sistema de configuración base extensible | Media |
+
+#### Funcionalidades NO incluidas en Core (requieren plugins):
+
+- ❌ Gestión académica (requiere Academic-Basic)
+- ❌ Gestión de estudiantes (requiere Academic-Basic)  
+- ❌ Gestión de calificaciones (requiere Academic-Basic)
+- ❌ Generación de reportes (requiere plugins específicos)
+- ❌ Gestión de recursos humanos (requiere HR-Management)
+- ❌ Sistema contable (requiere Accounting)
+- ❌ Cualquier funcionalidad de negocio específica
+
+#### Roles incluidos en Core (mínimos):
+
+- **Super-Administrador**: Gestión técnica del sistema
+- **Admin-Institución**: Administración básica (se extiende con plugins)
+- **Usuario Base**: Usuario sin permisos específicos de negocio
+
+**Todos los demás roles se definen en plugins y se activan dinámicamente.**
 
 ### 6.2 Installer
 
@@ -1595,7 +1777,7 @@ Generación de boletines adaptados a normativa.
 
 ### 6.6 License-Manager
 
-Sistema avanzado de licenciamiento con auto-activación de plugins.
+Sistema avanzado de licenciamiento con auto-activación de plugins y **catálogo interno integrado**.
 
 #### Requisitos Funcionales
 
@@ -1603,18 +1785,88 @@ Sistema avanzado de licenciamiento con auto-activación de plugins.
 |----|-----------|-------------|-----------|
 | LM-1 | Gestión de planes | Planes base configurables con límites | Alta |
 | LM-2 | Gestión de addons | Módulos adicionales activables independientemente | Alta |
-| LM-3 | Auto-activación SaaS | Activación automática < 2 minutos tras compra | Alta |
-| LM-4 | Auto-activación On-Premise | Activación automática < 30 minutos con Update-Bundle | Alta |
-| LM-5 | API licensing completa | Servicios REST en `/api/rest/v1/licensing/` | Alta |
-| LM-6 | Eventos de licenciamiento | `plan.changed`, `addon.purchased`, `plugin.activated`, `plugin.deactivated` | Alta |
-| LM-7 | Metered billing | Facturación por estudiante/empleado activo | Alta |
-| LM-8 | Validación de límites | Control automático de límites de uso | Alta |
-| LM-9 | Update-Bundle firmado | Paquetes de actualización con firma digital | Alta |
-| LM-10 | Auto-Updater | Sistema de actualizaciones automáticas con rollback | Alta |
-| LM-11 | Plugin state management | Estados de plugins por tenant | Alta |
-| LM-12 | Rollback automático | Reversión automática en caso de fallo | Alta |
-| LM-13 | Webhook delegation | Delegación desde WooCommerce | Alta |
-| LM-14 | Repository integration | Conexión con repositorio de plugins | Alta |
+| LM-3 | Catálogo interno | Interface para visualizar plugins disponibles/activos | Alta |
+| LM-4 | Redirección WooCommerce | Redirección segura a tienda con parámetros tenant | Alta |
+| LM-5 | Auto-activación SaaS | Activación automática < 2 minutos tras compra | Alta |
+| LM-6 | Auto-activación On-Premise | Activación automática < 30 minutos con Update-Bundle | Alta |
+| LM-7 | API licensing completa | Servicios REST en `/api/rest/v1/licensing/` | Alta |
+| LM-8 | Eventos de licenciamiento | `plan.changed`, `addon.purchased`, `plugin.activated`, `plugin.deactivated` | Alta |
+| LM-9 | Metered billing | Facturación por estudiante/empleado activo | Alta |
+| LM-10 | Validación de límites | Control automático de límites de uso | Alta |
+| LM-11 | Update-Bundle firmado | Paquetes de actualización con firma digital | Alta |
+| LM-12 | Auto-Updater | Sistema de actualizaciones automáticas con rollback | Alta |
+| LM-13 | Plugin state management | Estados de plugins por tenant | Alta |
+| LM-14 | Rollback automático | Reversión automática en caso de fallo | Alta |
+| LM-15 | Webhook delegation | Delegación desde WooCommerce | Alta |
+| LM-16 | Repository integration | Conexión con repositorio privado de plugins | Alta |
+| LM-17 | Trial management | Gestión de períodos de prueba | Alta |
+| LM-18 | Role activation | Activación automática de roles al instalar plugin | Alta |
+| LM-19 | Prerequisite validation | Validación de plugins prerequisitos antes de activar | Alta |
+| LM-20 | Catalog security | Control de acceso al catálogo según suscripción | Alta |
+
+#### Funcionalidades del catálogo interno
+
+**Vista de plugins categorizada:**
+
+1. **Plugins Activos**: Estado operativo, configuración, roles disponibles
+2. **Plugins Incluidos**: Disponibles en la suscripción actual para activar
+3. **Add-ons Disponibles**: Plugins adicionales para compra
+4. **Upgrades Requeridos**: Plugins que requieren cambio de plan
+
+**Flujo de compra integrado:**
+
+```mermaid
+flowchart TD
+    A[Admin ve catálogo] --> B{Plugin status}
+    B -->|Activo| C[Mostrar configuración]
+    B -->|Incluido| D[Botón "Activar"]
+    B -->|Add-on| E[Botón "Comprar"]
+    B -->|Requiere upgrade| F[Botón "Upgrade Plan"]
+    
+    D --> G[Activar inmediatamente]
+    E --> H[Redirigir a WooCommerce]
+    F --> I[Redirigir a WooCommerce]
+    
+    H --> J[Proceso de compra]
+    I --> K[Proceso de upgrade]
+    J --> L[Webhook confirmación]
+    K --> L
+    L --> M[Auto-activación plugin]
+    
+    G --> N[Roles disponibles]
+    M --> N
+    N --> O[Configurar roles]
+```
+
+#### Integración con repositorio privado
+
+**Autenticación por suscripción:**
+- Token JWT específico por tenant
+- Validación de plugins autorizados
+- Control de versiones descargables
+- Límites de descarga por período
+
+**Descarga segura:**
+- Plugins firmados digitalmente
+- Verificación de checksums
+- Encriptación en tránsito
+- Log de descargas por tenant
+
+#### Gestión de trials
+
+**Control de período de prueba:**
+- Solo plan Esencial elegible para trial
+- 30 días de acceso completo
+- Notificaciones 7, 3 y 1 día antes de vencer
+- Conversión manual a plan pagado
+- Degradación automática al vencer
+
+**Características del trial:**
+- Funcionalidad completa del plan Esencial
+- Marcas de agua en reportes
+- Soporte limitado
+- Sin acceso a add-ons premium
+- Datos se conservan 30 días tras vencimiento
 
 ### 6.7 Payments
 
@@ -3205,15 +3457,49 @@ graph TB
 | HU-ADM04 | Acudiente | Acompañar proceso de mi hijo | Estar informado del avance | - Portal de seguimiento<br>- Notificaciones en tiempo real<br>- Carga de documentos<br>- Comunicación con colegio |
 | HU-ADM05 | Rector | Aprobar admisiones | Tomar decisión final | - Dashboard ejecutivo<br>- Ranking de aspirantes<br>- Criterios de decisión<br>- Aprobación masiva |
 
-#### Plugin: License-Manager 2.0
+#### Plugin: License-Manager 2.0 (Historias actualizadas)
 
 | ID | Como... | Quiero... | Para... | Criterios de aceptación |
 |----|---------|-----------|---------|-------------------------|
-| HU-LIC01 | Admin-Cliente | Gestionar planes de suscripción | Controlar acceso a funcionalidades | - CRUD de planes<br>- Configuración de límites<br>- Precios por tipo institución<br>- Activación automática |
-| HU-LIC02 | Rector | Comprar addons desde el sistema | Ampliar funcionalidades | - Catálogo de addons<br>- Compra integrada<br>- Activación < 2 min (SaaS)<br>- Confirmación de activación |
-| HU-LIC03 | Admin-Institución | Monitorear uso de licencia | Controlar límites | - Dashboard de uso<br>- Alertas de límites<br>- Métricas detalladas<br>- Proyecciones de uso |
-| HU-LIC04 | Contador | Ver facturación por uso | Controlar costos | - Metered billing detallado<br>- Estudiantes/empleados activos<br>- Reportes de consumo<br>- Exportación contable |
-| HU-LIC05 | DevOps | Actualizar plugins automáticamente | Mantener sistema actualizado | - Update-Bundles firmados<br>- Verificación de checksums<br>- Rollback automático<br>- Logs de actualización |
+| HU-LIC01 | Admin-Institución | Ver catálogo de plugins disponibles | Conocer qué funcionalidades puedo activar | - Catálogo categorizado por estado<br>- Información de precios<br>- Descripción de roles incluidos<br>- Prerequisitos claramente indicados |
+| HU-LIC02 | Admin-Institución | Activar plugin incluido en mi plan | Usar funcionalidad ya pagada | - Activación en < 2 min<br>- Roles automáticamente disponibles<br>- Notificación de activación exitosa<br>- Acceso inmediato a configuración |
+| HU-LIC03 | Admin-Institución | Comprar plugin adicional | Ampliar funcionalidades de mi institución | - Redirección segura a WooCommerce<br>- Parámetros de tenant incluidos<br>- Proceso de compra transparente<br>- Return URL de confirmación |
+| HU-LIC04 | Admin-Institución | Ser notificado cuando plugin se active | Saber cuándo puedo usar nueva funcionalidad | - Notificación en dashboard<br>- Email de confirmación<br>- Roles nuevos visibles<br>- Tutorial de configuración |
+| HU-LIC05 | Admin-Institución | Personalizar roles de plugin activado | Adaptar a estructura organizacional | - Editor de roles intuitivo<br>- Plantillas predeterminadas<br>- Previsualización de cambios<br>- Aplicación inmediata |
+| HU-LIC06 | Admin-Institución | Gestionar período de prueba | Evaluar funcionalidad antes de comprar | - 30 días de acceso completo<br>- Notificaciones de vencimiento<br>- Proceso de conversión simple<br>- Conservación de datos |
+| HU-LIC07 | Contador | Monitorear uso de licencia | Controlar costos y presupuesto | - Dashboard de uso actual<br>- Proyecciones de facturación<br>- Alertas de límites<br>- Historial de consumo |
+| HU-LIC08 | Super-Administrador | Gestionar repositorio privado | Mantener seguridad y control | - Acceso por suscripción<br>- Plugins firmados digitalmente<br>- Control de versiones<br>- Logs de descarga |
+
+#### Plugin: Admissions (Historias detalladas)
+
+| ID | Como... | Quiero... | Para... | Criterios de aceptación |
+|----|---------|-----------|---------|-------------------------|
+| HU-ADM01 | Coordinador de Admisiones | Configurar proceso completo | Definir criterios institucionales | - Configuración de períodos<br>- Criterios de evaluación<br>- Pesos por componente<br>- Cupos por grado<br>- Requisitos documentales |
+| HU-ADM02 | Aspirante | Registrarme desde portal público | Iniciar mi proceso de admisión | - Formulario público accesible<br>- Validación de datos<br>- Carga de documentos<br>- Confirmación inmediata<br>- Seguimiento de estado |
+| HU-ADM03 | Asesor de Admisiones | Gestionar aspirantes asignados | Acompañar proceso individualmente | - Lista de aspirantes<br>- Historial de interacciones<br>- Programación de citas<br>- Notas privadas<br>- Estados del proceso |
+| HU-ADM04 | Evaluador de Admisiones | Registrar resultados de evaluaciones | Documentar desempeño del aspirante | - Formularios de evaluación<br>- Escalas de calificación<br>- Comentarios detallados<br>- Subida de evidencias<br>- Recomendaciones |
+| HU-ADM05 | Coordinador de Admisiones | Tomar decisiones finales | Aprobar o rechazar admisiones | - Ranking automático<br>- Información consolidada<br>- Justificación de decisiones<br>- Aprobación masiva<br>- Comunicación automática |
+| HU-ADM06 | Acudiente | Hacer seguimiento del proceso | Estar informado del progreso | - Portal de seguimiento<br>- Notificaciones en tiempo real<br>- Documentos descargables<br>- Comunicación con asesor<br>- Calendario de citas |
+
+#### Plugin: HR-Management (Historias por roles)
+
+| ID | Como... | Quiero... | Para... | Criterios de aceptación |
+|----|---------|-----------|---------|-------------------------|
+| HU-HR01 | Jefe de Personal | Gestionar tipos de vinculación | Cumplir normativa laboral colombiana | - Tipos oficiales: propiedad, provisional, período prueba<br>- Tipos privados: indefinido, término fijo, hora cátedra<br>- Escalafón automático<br>- Evaluaciones diferenciadas |
+| HU-HR02 | Auxiliar de Nómina | Procesar nómina diferenciada | Calcular pagos correctamente | - Cálculo según tipo contrato<br>- Prestaciones automáticas<br>- Deducciones por ley<br>- Archivo plano para bancos<br>- Comprobantes individuales |
+| HU-HR03 | Coordinador de RRHH | Gestionar bienestar laboral | Mejorar clima organizacional | - Programas de bienestar<br>- Evaluaciones de clima<br>- Capacitaciones<br>- Dotación y EPP<br>- Eventos corporativos |
+| HU-HR04 | Empleado | Consultar mi información | Acceder a mis datos laborales | - Certificados en línea<br>- Comprobantes de pago<br>- Historia laboral<br>- Solicitud de permisos<br>- Estado de cesantías |
+| HU-HR05 | Jefe Inmediato | Evaluar mi equipo | Gestionar desempeño de subordinados | - Formularios de evaluación<br>- Metas y objetivos<br>- Seguimiento periódico<br>- Planes de mejora<br>- Reconocimientos |
+
+#### Plugin: Meal-Service (PAE) (Historias operativas)
+
+| ID | Como... | Quiero... | Para... | Criterios de aceptación |
+|----|---------|-----------|---------|-------------------------|
+| HU-MS01 | Coordinador PAE | Gestionar beneficiarios | Garantizar cobertura adecuada | - Registro según criterios MEN<br>- Validación SISBEN<br>- Priorización automática<br>- Control de cupos<br>- Reportes oficiales |
+| HU-MS02 | Manipulador de Alimentos | Registrar entregas diarias | Controlar raciones entregadas | - Interface táctil simple<br>- Registro offline<br>- Conteo por modalidad<br>- Sincronización automática<br>- Evidencias fotográficas |
+| HU-MS03 | Nutricionista | Diseñar minutas | Cumplir estándares nutricionales | - Cálculo calórico automático<br>- Balance nutricional<br>- Rotación de menús<br>- Adaptación cultural<br>- Costos por ración |
+| HU-MS04 | Almacenista PAE | Controlar inventarios | Evitar pérdidas y vencimientos | - Sistema PEPS automático<br>- Alertas de vencimiento<br>- Trazabilidad por lote<br>- Control de mermas<br>- Reportes de movimiento |
+| HU-MS05 | Beneficiario PAE | Recibir alimentación | Acceder al programa | - Identificación rápida<br>- Validación de beneficio<br>- Registro de asistencia<br>- Acceso según modalidad<br>- Retroalimentación calidad |
 
 #### Plugin: HR-Management (Actualizado)
 
@@ -6070,9 +6356,393 @@ externalDocs:
   url: https://docs.lazarus.edu.co
 ```
 
----
+### 15.8 Configuración de redirección a WooCommerce
 
-**Fin del Documento de Especificación y Diseño v2.1**
+Configuración para la integración entre el catálogo interno de Lazarus y la tienda WooCommerce:
+
+```php
+// config/woocommerce-integration.php
+return [
+    'store_configuration' => [
+        'base_url' => env('WOOCOMMERCE_STORE_URL', 'https://tienda.lazarus.edu.co'),
+        'api_key' => env('WOOCOMMERCE_API_KEY'),
+        'api_secret' => env('WOOCOMMERCE_API_SECRET'),
+        'webhook_secret' => env('WOOCOMMERCE_WEBHOOK_SECRET'),
+        'return_url' => env('APP_URL') . '/licensing/purchase-complete',
+        'cancel_url' => env('APP_URL') . '/licensing/purchase-cancelled'
+    ],
+    
+    'redirect_parameters' => [
+        'tenant_identification' => [
+            'tenant_id' => 'required|uuid',
+            'institution_name' => 'required|string',
+            'institution_type' => 'required|in:public,private,mixed',
+            'current_plan' => 'required|string',
+            'contact_email' => 'required|email'
+        ],
+        
+        'purchase_context' => [
+            'action_type' => 'required|in:addon_purchase,plan_upgrade,plan_change',
+            'source_plugin' => 'nullable|string', // Plugin desde donde se origina la compra
+            'target_product_id' => 'required|integer', // ID del producto en WooCommerce
+            'current_plugins' => 'array', // Plugins actualmente activos
+            'session_token' => 'required|string' // Token de seguridad
+        ],
+        
+        'billing_information' => [
+            'current_students' => 'integer',
+            'current_employees' => 'integer',
+            'current_branches' => 'integer',
+            'estimated_overage' => 'array' // Estimación de costos adicionales
+        ]
+    ],
+    
+    'url_generation' => [
+        'addon_purchase' => '/shop/plugins/{product_id}?tenant={tenant_id}&action=addon',
+        'plan_upgrade' => '/shop/plans/{product_id}?tenant={tenant_id}&action=upgrade&from={current_plan}',
+        'plan_change' => '/shop/plans/{product_id}?tenant={tenant_id}&action=change&from={current_plan}'
+    ],
+    
+    'security' => [
+        'token_expiry' => 1800, // 30 minutos
+        'allowed_origins' => [
+            env('APP_URL'),
+            'https://*.lazarus.edu.co'
+        ],
+        'csrf_protection' => true,
+        'ssl_required' => true
+    ]
+];
+
+// Ejemplo de clase para generar URLs de redirección
+class WooCommerceRedirectService
+{
+    public function generatePurchaseUrl($tenantId, $productId, $actionType, $additionalParams = [])
+    {
+        $baseUrl = config('woocommerce-integration.store_configuration.base_url');
+        $tenant = Tenant::find($tenantId);
+        
+        // Generar token de seguridad
+        $sessionToken = $this->generateSecureToken($tenantId, $productId);
+        
+        // Parámetros base
+        $params = [
+            'tenant_id' => $tenantId,
+            'institution_name' => $tenant->name,
+            'institution_type' => $tenant->type,
+            'current_plan' => $tenant->subscription->plan_code,
+            'contact_email' => $tenant->contact_email,
+            'action_type' => $actionType,
+            'target_product_id' => $productId,
+            'current_plugins' => $tenant->activePlugins->pluck('code')->toArray(),
+            'session_token' => $sessionToken,
+            'current_students' => $tenant->getActiveStudentsCount(),
+            'current_employees' => $tenant->getActiveEmployeesCount(),
+            'current_branches' => $tenant->getBranchesCount(),
+            'return_url' => route('licensing.purchase-complete'),
+            'cancel_url' => route('licensing.purchase-cancelled'),
+            'timestamp' => now()->timestamp
+        ];
+        
+        // Combinar con parámetros adicionales
+        $params = array_merge($params, $additionalParams);
+        
+        // Generar URL según tipo de acción
+        $endpoint = $this->getEndpointForAction($actionType, $productId, $tenant->subscription->plan_code);
+        
+        // Construir URL completa
+        $url = $baseUrl . $endpoint . '?' . http_build_query($params);
+        
+        // Log de la redirección para auditoría
+        $this->logRedirection($tenantId, $url, $actionType, $productId);
+        
+        return $url;
+    }
+    
+    private function getEndpointForAction($actionType, $productId, $currentPlan)
+    {
+        $endpoints = config('woocommerce-integration.url_generation');
+        
+        switch ($actionType) {
+            case 'addon_purchase':
+                return str_replace('{product_id}', $productId, $endpoints['addon_purchase']);
+                
+            case 'plan_upgrade':
+                return str_replace(['{product_id}', '{current_plan}'], 
+                    [$productId, $currentPlan], $endpoints['plan_upgrade']);
+                
+            case 'plan_change':
+                return str_replace(['{product_id}', '{current_plan}'], 
+                    [$productId, $currentPlan], $endpoints['plan_change']);
+                
+            default:
+                throw new InvalidArgumentException("Tipo de acción no válido: {$actionType}");
+        }
+    }
+    
+    private function generateSecureToken($tenantId, $productId)
+    {
+        $payload = [
+            'tenant_id' => $tenantId,
+            'product_id' => $productId,
+            'timestamp' => now()->timestamp,
+            'exp' => now()->addMinutes(30)->timestamp
+        ];
+        
+        return JWT::encode($payload, config('app.key'), 'HS256');
+    }
+    
+    private function logRedirection($tenantId, $url, $actionType, $productId)
+    {
+        Log::info('WooCommerce redirection generated', [
+            'tenant_id' => $tenantId,
+            'action_type' => $actionType,
+            'product_id' => $productId,
+            'url' => $url,
+            'timestamp' => now()
+        ]);
+        
+        // También registrar en blockchain para auditoría
+        BlockchainAudit::record('woocommerce_redirect', [
+            'tenant_id' => $tenantId,
+            'action' => $actionType,
+            'product_id' => $productId
+        ]);
+    }
+}
+
+// Ejemplo de uso en el controlador del catálogo
+class PluginCatalogController extends Controller
+{
+    public function purchasePlugin(Request $request, $pluginCode)
+    {
+        $tenant = Auth::user()->tenant;
+        $plugin = PluginCatalog::findByCode($pluginCode);
+        
+        // Validar que el plugin esté disponible para compra
+        if (!$plugin->isAvailableForPurchase($tenant)) {
+            return response()->json(['error' => 'Plugin no disponible para compra'], 403);
+        }
+        
+        // Validar prerequisitos
+        if (!$plugin->hasPrerequisites($tenant)) {
+            return response()->json([
+                'error' => 'Faltan plugins prerequisitos',
+                'missing' => $plugin->getMissingPrerequisites($tenant)
+            ], 422);
+        }
+        
+        // Generar URL de redirección
+        $redirectService = new WooCommerceRedirectService();
+        $purchaseUrl = $redirectService->generatePurchaseUrl(
+            $tenant->id,
+            $plugin->woocommerce_product_id,
+            'addon_purchase',
+            [
+                'plugin_code' => $pluginCode,
+                'plugin_name' => $plugin->name,
+                'estimated_setup_time' => $plugin->estimated_setup_minutes
+            ]
+        );
+        
+        return response()->json([
+            'success' => true,
+            'redirect_url' => $purchaseUrl,
+            'message' => 'Redirigiendo a la tienda para completar la compra...',
+            'estimated_activation_time' => $plugin->estimated_setup_minutes . ' minutos'
+        ]);
+    }
+    
+    public function upgradePlan(Request $request, $planCode)
+    {
+        $tenant = Auth::user()->tenant;
+        $newPlan = SubscriptionPlan::findByCode($planCode);
+        $currentPlan = $tenant->subscription->plan;
+        
+        // Validar que sea un upgrade válido
+        if (!$newPlan->isUpgradeFrom($currentPlan)) {
+            return response()->json(['error' => 'Cambio de plan no válido'], 422);
+        }
+        
+        // Generar URL de redirección
+        $redirectService = new WooCommerceRedirectService();
+        $purchaseUrl = $redirectService->generatePurchaseUrl(
+            $tenant->id,
+            $newPlan->woocommerce_product_id,
+            'plan_upgrade',
+            [
+                'current_plan_code' => $currentPlan->code,
+                'new_plan_code' => $planCode,
+                'prorated_amount' => $this->calculateProratedAmount($currentPlan, $newPlan),
+                'new_plugins' => $newPlan->getAdditionalPlugins($currentPlan)
+            ]
+        );
+        
+        return response()->json([
+            'success' => true,
+            'redirect_url' => $purchaseUrl,
+            'message' => 'Redirigiendo para actualizar su plan...',
+            'new_features' => $newPlan->getAdditionalFeatures($currentPlan)
+        ]);
+    }
+}
+```
+
+### 15.9 Webhook de confirmación desde WooCommerce
+
+Configuración del webhook que recibe las confirmaciones de compra desde WooCommerce:
+
+```php
+// app/Http/Controllers/WebhookController.php
+class WooCommerceWebhookController extends Controller
+{
+    public function handleOrderCompleted(Request $request)
+    {
+        // Validar webhook signature
+        if (!$this->validateWebhookSignature($request)) {
+            Log::warning('Invalid webhook signature from WooCommerce');
+            return response('Unauthorized', 401);
+        }
+        
+        $orderData = $request->all();
+        
+        // Extraer información del pedido
+        $tenantId = $orderData['meta_data']['tenant_id'] ?? null;
+        $productId = $orderData['line_items'][0]['product_id'] ?? null;
+        $actionType = $orderData['meta_data']['action_type'] ?? null;
+        
+        if (!$tenantId || !$productId) {
+            Log::error('Missing required data in WooCommerce webhook', $orderData);
+            return response('Bad Request', 400);
+        }
+        
+        try {
+            // Procesar según tipo de acción
+            switch ($actionType) {
+                case 'addon_purchase':
+                    $this->processAddonPurchase($tenantId, $productId, $orderData);
+                    break;
+                    
+                case 'plan_upgrade':
+                case 'plan_change':
+                    $this->processPlanChange($tenantId, $productId, $orderData);
+                    break;
+                    
+                default:
+                    Log::error('Unknown action type in webhook', ['action_type' => $actionType]);
+                    return response('Bad Request', 400);
+            }
+            
+            return response('OK', 200);
+            
+        } catch (Exception $e) {
+            Log::error('Error processing WooCommerce webhook', [
+                'error' => $e->getMessage(),
+                'tenant_id' => $tenantId,
+                'product_id' => $productId,
+                'order_data' => $orderData
+            ]);
+            
+            return response('Internal Server Error', 500);
+        }
+    }
+    
+    private function processAddonPurchase($tenantId, $productId, $orderData)
+    {
+        $tenant = Tenant::find($tenantId);
+        $plugin = PluginCatalog::findByWooCommerceId($productId);
+        
+        // Crear registro de addon en la suscripción
+        $addon = $tenant->subscription->addons()->create([
+            'addon_code' => $plugin->code,
+            'addon_type' => $plugin->type,
+            'status' => 'purchased',
+            'activated_at' => null,
+            'expires_at' => now()->addDays($plugin->duration_days),
+            'order_id' => $orderData['id'],
+            'amount_paid' => $orderData['total']
+        ]);
+        
+        // Activar plugin automáticamente
+        $this->activatePlugin($tenant, $plugin, $addon);
+        
+        // Registrar en blockchain
+        BlockchainAudit::record('addon_purchased', [
+            'tenant_id' => $tenantId,
+            'plugin_code' => $plugin->code,
+            'order_id' => $orderData['id'],
+            'amount' => $orderData['total']
+        ]);
+        
+        // Notificar al cliente
+        $this->notifyPurchaseComplete($tenant, $plugin, 'addon_purchased');
+    }
+    
+    private function activatePlugin($tenant, $plugin, $addon)
+    {
+        $licenseManager = app(LicenseManager::class);
+        
+        if ($tenant->deployment_type === 'saas') {
+            // Activación SaaS: instantánea
+            $result = $licenseManager->activatePluginSaaS($tenant->id, $plugin->code);
+            
+        } else {
+            // Activación On-Premise: descarga e instalación
+            $result = $licenseManager->activatePluginOnPremise($tenant->id, $plugin->code);
+        }
+        
+        if ($result['success']) {
+            // Actualizar estado del addon
+            $addon->update([
+                'status' => 'active',
+                'activated_at' => now()
+            ]);
+            
+            // Activar roles asociados
+            $this->activatePluginRoles($tenant, $plugin);
+            
+        } else {
+            // Log error y intentar rollback
+            Log::error('Plugin activation failed', [
+                'tenant_id' => $tenant->id,
+                'plugin_code' => $plugin->code,
+                'error' => $result['error']
+            ]);
+            
+            // Marcar addon como fallido
+            $addon->update(['status' => 'failed']);
+            
+            // Notificar fallo al cliente
+            $this->notifyActivationFailed($tenant, $plugin, $result['error']);
+        }
+    }
+    
+    private function activatePluginRoles($tenant, $plugin)
+    {
+        $roleManager = app(RoleManager::class);
+        
+        // Obtener roles predefinidos del plugin
+        $pluginRoles = $plugin->getDefaultRoles();
+        
+        foreach ($pluginRoles as $roleData) {
+            $roleManager->createOrUpdateRole($tenant->id, [
+                'name' => $roleData['name'],
+                'slug' => $roleData['slug'],
+                'permissions' => $roleData['permissions'],
+                'plugin_code' => $plugin->code,
+                'is_customizable' => true,
+                'created_by_plugin' => true
+            ]);
+        }
+        
+        Log::info('Plugin roles activated', [
+            'tenant_id' => $tenant->id,
+            'plugin_code' => $plugin->code,
+            'roles_count' => count($pluginRoles)
+        ]);
+    }
+}
+```
 
 Este documento proporciona la especificación completa y actualizada del sistema Lazarus, incorporando todas las mejoras solicitadas:
 
